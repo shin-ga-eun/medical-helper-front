@@ -1,0 +1,29 @@
+import React, { Component } from "react";
+import MapForm from "./MapForm";
+import Axios from "axios";
+import Search from "./Search";
+
+class Map extends Component {
+  componentDidMount = async () => {
+    try {
+      const response = await Axios.get(
+        "/medicalHelper/emergency/realtime/경기도/시흥시/1"
+      );
+      const { status, data } = response;
+      if (status === 200) {
+        console.log(data);
+        const { state } = this;
+        this.setState({
+          ...state,
+          Artworks: data
+        });
+      }
+    } catch (e) {}
+  };
+
+  render() {
+    return <div>응급실 api 페이지</div>;
+  }
+}
+
+export default Map;
