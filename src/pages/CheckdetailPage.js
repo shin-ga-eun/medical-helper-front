@@ -1,7 +1,12 @@
 import React from "react";
+import Checkdetail from "./myhealthcheck/container/Checkdetail";
 
 const CheckdetailPage = () => {
-  return <div>진료내용페이지</div>;
+  return (
+    <div>
+      <Checkdetail />
+    </div>
+  );
 };
 
 export default CheckdetailPage;
