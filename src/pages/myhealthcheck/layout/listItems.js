@@ -1,4 +1,3 @@
-import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -11,8 +10,13 @@ import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Link } from "react-router-dom";
 
-export const mainListItems = (
-  <div>
+import React, { Component } from 'react';
+
+class listItems extends Component {
+  render() {
+    return (
+      <div>
+        <div>
     <Link to="/appointment">
       <ListItem button="true">
         <ListItemIcon>
@@ -49,4 +53,9 @@ export const mainListItems = (
       </ListItem>
     </Link>
   </div>
-);
+      </div>
+    );
+  }
+}
+
+export default listItems;
