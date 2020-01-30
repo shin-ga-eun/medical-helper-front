@@ -1,25 +1,37 @@
 import React from "react";
+import { Button } from "@material-ui/core";
+import { Route, Link } from "react-router-dom";
+import EmrSearchPage from "./EmrSearchPage";
 
 const MainPage = () => {
   return (
-    <div>
-      <a href="http://localhost:3000/myhealthcheck">
-        <img
-          src="https://postfiles.pstatic.net/MjAyMDAxMDVfMjIw/MDAxNTc4MjEzNDkwNjg0.TAWEI6o7IMkQ3GN0M4VHaYL5-edx_mtSoLkKGojuQ-og.ln1piWtuIex-BajBD2WVXyXHB3DVo0sSHTwnNNqnLBAg.PNG.yunyounghoon25/My-Health.png?type=w966"
-          alt="health"
-          width="850"
-          height="600"
-        />
-      </a>
-      <a href="http://localhost:3000/emrsearch">
-        <img
-          src="https://postfiles.pstatic.net/MjAyMDAxMDVfMTE4/MDAxNTc4MjEzNDk2MTg0.0WtvO8dMZ69xyTqOasWapDMzHWMJZvylscXgVILWme4g.ucwetDHLlo9FXZTEA4qYIJoAF2C7cer3QqUTJQ3f2fQg.PNG.yunyounghoon25/emr_Search.png?type=w966"
-          alt="emroom"
-          width="850"
-          height="600"
-        />
-      </a>
-    </div>
+    <>
+      <div>
+        <Link to="/emrsearch">
+          <Button
+            variant="contained"
+            color="secondary"
+            fullWidth="true"
+            style={{ height: 500, fontSize: 50 }}
+          >
+            응급실 조회
+          </Button>
+        </Link>
+      </div>
+
+      <div>
+        <Link to="/myhealthcheck">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth="true"
+            style={{ height: 500, fontSize: 50 }}
+          >
+            내 건강관리
+          </Button>
+        </Link>
+      </div>
+    </>
   );
 };
 
