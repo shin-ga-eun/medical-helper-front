@@ -18,7 +18,7 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems } from "./listItems";
+import { mainListItems } from "./pages/myhealthcheck/layout/listItems";
 
 function Copyright() {
   return (
@@ -152,7 +152,7 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            내 건강관리
+            진료예약
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

@@ -8,6 +8,7 @@ import MyHealthCheckPage from "./pages/MyHealthCheckPage";
 import AppointmentPage from "./pages/AppointmentPage";
 import AppointmentCheckPage from "./pages/AppointmentCheckPage";
 import CheckdetailPage from "./pages/CheckdetailPage";
+import MyProfilePage from "./pages/MyProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/appointment" component={AppointmentPage} />
       <Route path="/appointmentcheck" component={AppointmentCheckPage} />
       <Route path="/checkdetail" component={CheckdetailPage} />
+      <Route path="/myprofile" component={MyProfilePage} />
     </div>
   );
 }
