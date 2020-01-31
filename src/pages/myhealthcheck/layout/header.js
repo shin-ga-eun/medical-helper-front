@@ -16,9 +16,18 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+<<<<<<< HEAD
 import useStyles from "../style/useStyles";
 
 import React, { useState } from "react";
+=======
+
+import useStyles from "../sytle/useStyles"
+
+import React, { useState } from 'react';
+
+
+>>>>>>> bfb332d4be1127bc6b9b619fb021f65bd871b769
 
 // class header extends Component {
 //   state ={
@@ -106,7 +115,7 @@ const Header = () => {
   const classes = useStyles.bind();
 
   const [open, setOpen] = useState(true);
-
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -123,6 +132,10 @@ const Header = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
+<<<<<<< HEAD
+=======
+          
+>>>>>>> bfb332d4be1127bc6b9b619fb021f65bd871b769
           <Typography
             component="h1"
             variant="h6"
@@ -132,9 +145,25 @@ const Header = () => {
           >
             내 건강관리
           </Typography>
+<<<<<<< HEAD
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 export default Header;
+=======
+          
+        </Toolbar>
+      </AppBar>
+
+
+    </div>
+  );
+}
+export default Header;
+
+
+
+
+>>>>>>> bfb332d4be1127bc6b9b619fb021f65bd871b769
