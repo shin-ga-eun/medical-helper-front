@@ -4,7 +4,8 @@ class body extends Component {
     render() {
         return (
             <div>
-                {"바디입니다."}
+                {" git test."}
+                {"git test test"}
 
 
 
