@@ -110,7 +110,7 @@ const AppointmentCheck = () => {
 
   // };
 
-  return <div></div>;
+  return <div>진료예약확인</div>;
 };
 
 export default AppointmentCheck;

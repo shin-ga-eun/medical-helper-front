@@ -1,95 +1,51 @@
-import React, { useState } from "react";
-import { TextField, Checkbox } from "@material-ui/core";
+// 진료내용 확인
+// w
+
+import React, { useEffect } from "react";
+import Axios from "axios";
+
+// 임시 데이터
+const data = [
+  {
+    id: 1,
+    title: "목감기",
+    solution: "물 많이 마시기",
+    doctorName: "이국종",
+    deadline: "2017-01-13"
+  },
+  {
+    id: 1,
+    title: "복통",
+    solution: "화장실 많이 가기",
+    doctorName: "김수현",
+    deadline: "2018-05-04"
+  }
+];
 
 const Checkdetail = () => {
-  const [form, setForm] = useState({
-    title: "",
-    solution: "",
-    doctorName: "",
-    reservationId: "",
-    breakfast: false,
-    lunch: false,
-    dinner: false,
-    deadline: ""
-  });
-
-  const {
-    title,
-    solution,
-    doctorName,
-    reservationId,
-    breakfast,
-    lunch,
-    dinner,
-    deadline
-  } = form;
-
-  const onChange = e => {
-    const nextForm = {
-      ...form,
-      [e.target.name]: e.target.value
+  // 데이터 받아오는 부분
+  useEffect(() => {
+    // async를 사용하는 함수 따로 선언
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get("url");
+        // set (resopnse.data)
+      } catch (e) {
+        console.log(e);
+      }
+      fetchData();
     };
-    setForm(nextForm);
-  };
+  }, []);
 
-  //     "title": 1,
-  // "solution": "꾸준한 운동, 약 3일치",
-  // "doctorName": "이국종",
-  // "reservationId" : 6,
-  // "breakfast" : true,
-  // "lunch" : true,
-  // "dinner" : true,
-  // "deadline" : "2020-01-15T00:00"
+  const dataList = data.map( (data) =>{
+  return (<h3 key={data.id}>{data.title} {data.solution} {data.doctorName} {data.deadline}</h3> )
+  })
 
   return (
     <div>
-      <form>
-        <TextField
-          id="standard-basic"
-          label="제목"
-          name="title"
-          value={title}
-          onChange={onChange}
-          style={{ width: 300 }}
-        />
-        <br />
-        <br />
-        <TextField
-          id="standard-basic"
-          label="처방내용"
-          style={{ width: 600 }}
-          name="solution"
-          value={solution}
-          onChange={onChange}
-        />
-        <br />
-        <br />
-        <TextField
-          id="standard-basic"
-          label="교수이름"
-          style={{ width: 100 }}
-          name="doctorName"
-          value={doctorName}
-          onChange={onChange}
-        />
-        <br />
-        <br />
-        <Checkbox onChange={onChange} />
-        <Checkbox value="primary" />
-        <Checkbox value="primary" />
-        <br />
-        <br />
-        <TextField
-          id="datetime-local"
-          label="~까지"
-          type="datetime-local"
-          defaultValue="2017-05-24T10:30"
-          name="deadline"
-          value={deadline}
-          onChange={onChange}
-        />
-        >
-      </form>
+      제목&nbsp; 처방내용 &nbsp; 의사명 &nbsp; 약 &nbsp; 기한
+      <hr />
+      {dataList}
     </div>
   );
 };
