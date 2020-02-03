@@ -5,7 +5,7 @@ import { Route } from "react-router-dom";
 
 import Appointment from "./container/Appointment"
 import Checkdetail from "./container/Checkdetail";
-import AppointmentCheck from "./container/AppointmentCheck";
+import AppointmentCheck from "./container/appointment_check/AppointmentCheck";
 
 
 //내건강관리페이지의 메인홈페이지

@@ -78,7 +78,10 @@ const useStyles = makeStyles(theme => ({
     },
     fixedHeight: {
       height: 240
-    }
+    },
+    table: {
+      minWidth: 650,
+    },
   }));
 
   export default useStyles;

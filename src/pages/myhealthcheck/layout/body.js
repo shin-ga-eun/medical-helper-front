@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import Appointment from "../container/Appointment"
 import Checkdetail from "../container/Checkdetail";
-import AppointmentCheck from "../container/AppointmentCheck";
+import AppointmentCheck from "../container/appointment_check/AppointmentCheck";
 
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
