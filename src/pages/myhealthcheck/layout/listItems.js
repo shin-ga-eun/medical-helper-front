@@ -13,46 +13,54 @@ import { Link } from "react-router-dom";
 import React, { Component } from 'react';
 
 class listItems extends Component {
+  state = {
+    selectedIndex: 0,
+  }
+ 
+  /**
+   * index num 
+   * 0 진료예약
+   * 1 진료예약확인
+   * 2 진료내용
+   * 3 내 회원정보
+   */
+  handleIndex = (index) => {
+    this.props.handleIndex(index);
+  }
+  
+  
   render() {
     return (
-      <div>
+    
         <div>
-    <Link to="/appointment">
-      <ListItem button="true">
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="진료예약" />
-      </ListItem>
-    </Link>
-
-    <Link to="/appointmentcheck">
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="진료예약확인" />
-      </ListItem>
-    </Link>
-
-    <Link to="/checkdetail">
-      <ListItem button>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="진료내용" />
-      </ListItem>
-    </Link>
-
-    <Link to="/myprofile">
-      <ListItem button>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="내 회원정보" />
-      </ListItem>
-    </Link>
-  </div>
+          
+          <ListItem onClick={() => this.handleIndex(0)} button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="진료예약" />
+          </ListItem>
+       
+          <ListItem onClick={() => this.handleIndex(1)} button>
+              <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="진료예약확인" />
+          </ListItem>
+       
+          <ListItem onClick={() => this.handleIndex(2)} button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="진료내용" />
+          </ListItem>
+        
+          <ListItem onClick={() => this.handleIndex(3)} button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="내 회원정보" />
+          </ListItem>
       </div>
     );
   }
