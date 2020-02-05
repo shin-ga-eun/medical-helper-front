@@ -68,6 +68,7 @@ class SelfCheckButton extends Component {
   
     handleToggle = name => event => {
         this.setState({ 
+            // this.state.breakfast,
             [name]: event.target.checked,
         });
     }
