@@ -11,7 +11,7 @@ const MainPage = () => {
           <Button
             variant="contained"
             color="secondary"
-            // fullWidth="true"
+            fullWidth="true"
             style={{ height: 500, fontSize: 50 }}
           >
             응급실 조회
@@ -24,7 +24,7 @@ const MainPage = () => {
           <Button
             variant="contained"
             color="primary"
-            // fullWidth="true"
+            fullWidth="true"
             style={{ height: 500, fontSize: 50 }}
           >
             내 건강관리

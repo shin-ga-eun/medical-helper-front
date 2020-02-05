@@ -9,18 +9,20 @@ class AppointmentCheck extends Component {
     items:
     [
       {
-        desease: "두통", //증상
-        hospital: "백병원", //예약병원
-        regdate: "2020/02/02", //예약날짜
-        regtime:"10:00",
-        loading: "예약", //상태 (자료형이 뭔지 확인하기)
+        id: 0,
+        hospital:"미정",
+        reserveDate: "yyyy-MM-dd",
+        reserveTime: "10:00",
+        status: "예약완료",
+        symptom: "두통"
       },
       {
-        desease: "복통", //증상
-        hospital: "서울대병원", //예약병원
-        regdate: "2020/02/02", //예약날짜
-        regtime:"10:00",
-        loading: "예약", //상태 (자료형이 뭔지 확인하기)
+        id: 1,
+        hospital:"미정",
+        reserveDate: "yyyy-MM-dd",
+        reserveTime: "11:00",
+        status: "처방완료",
+        symptom: "복통"
       },
     ],
 

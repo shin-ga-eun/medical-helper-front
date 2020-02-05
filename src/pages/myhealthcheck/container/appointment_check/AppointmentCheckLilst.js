@@ -23,6 +23,7 @@ class AppointmentCheckList extends Component {
 
         return (
             <div>
+            
                 <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -37,11 +38,11 @@ class AppointmentCheckList extends Component {
                     <TableBody>
                     {items.map(row => (
                         <TableRow>
-                        <TableCell component="th" scope="row">{row.desease}</TableCell>
+                        <TableCell component="th" scope="row">{row.symptom}</TableCell>
                         <TableCell align="center">{row.hospital}</TableCell>
-                        <TableCell align="center">{row.regdate}</TableCell>
-                        <TableCell align="center">{row.regtime}</TableCell>
-                        <TableCell align="center"><SelfCheckButton/></TableCell>
+                        <TableCell align="center">{row.reserveDate}</TableCell>
+                        <TableCell align="center">{row.reserveTime}</TableCell>
+                        <TableCell align="center"><SelfCheckButton status={row.status} serverTime={row.reserveDate}/></TableCell>
                         </TableRow>
                     ))}
 
