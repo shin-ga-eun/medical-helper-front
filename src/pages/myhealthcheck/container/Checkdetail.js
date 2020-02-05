@@ -1,7 +1,7 @@
 // 진료내용 확인
 // w
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 // 임시 데이터
@@ -23,13 +23,26 @@ const data = [
 ];
 
 const Checkdetail = () => {
+  // state 설정
+  const [id, setId] = useState(0);
+  const [title, setTitle] = useState("");
+  const [solution, setSolution] = useState("");
+  const [doctorName, setDoctorName] = useState("");
+  const [deadline, setDeadline] = useState("");
+
   // 데이터 받아오는 부분
   useEffect(() => {
     // async를 사용하는 함수 따로 선언
     const fetchData = async () => {
       try {
+        // url 수정하기
         const response = await Axios.get("url");
         // set (resopnse.data)
+        setId(response.data.id);
+        setTitle(response.data.title);
+        setSolution(response.data.solution);
+        setDoctorName(response.data.doctorName);
+        setDeadline(response.data.deadline);
       } catch (e) {
         console.log(e);
       }
@@ -37,9 +50,13 @@ const Checkdetail = () => {
     };
   }, []);
 
-  const dataList = data.map( (data) =>{
-  return (<h3 key={data.id}>{data.title} {data.solution} {data.doctorName} {data.deadline}</h3> )
-  })
+  const dataList = data.map(data => {
+    return (
+      <h3 key={data.id}>
+        {data.title} {data.solution} {data.doctorName} {data.deadline}
+      </h3>
+    );
+  });
 
   return (
     <div>

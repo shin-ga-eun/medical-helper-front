@@ -4,6 +4,7 @@ import Search from "./Search";
 
 class MapForm extends Component {
   componentDidMount() {
+
     let mapContainer = document.getElementById("map"),
       mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
