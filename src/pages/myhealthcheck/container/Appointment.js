@@ -15,30 +15,40 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 
+const xPos = 37.5001823;
+const yPos = 127.0078127;
+
 const Appointment = () => {
-  useEffect(() => {
-    /* 병원 api를 가져왔어..
-    const response = Axios.get("병원api");
-    */
-
-    // 현재위치를 구하는 값
-    // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
-    if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const lat = position.coords.latitude, // 위도
-          lon = position.coords.longitude; // 경도
-
-        console.log(lat, lon);
-      });
-    }
-  }, []);
-
   const [symptom, setSympmtom] = useState("");
 
   const handleSypmtom = e => {
     setSympmtom(e.target.value);
   };
+  
+  // componentDidMount
+  useEffect(() => {
+    
+    // // 현재위치를 구하는 값
+    // // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
+    // if (navigator.geolocation) {
+    //   // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
+    //   navigator.geolocation.getCurrentPosition(function(position) {
+    //           xPos = position.coords.latitude; // 위도
+    //           yPos = position.coords.longitude; // 경도
+        
+    //           console.log(xPos, yPos);
+    //         });
+    // }
+    const get = async () => {
+      try {
+          const response = await Axios.get(`/medicalHelper/hospital/gps/around/${yPos}/${xPos}?pageNo=${1}`);
+          console.log(response.data)
+        } catch (e) {
+            console.log(e);
+      }
+  };
+  get();
+  }, []);
 
   return (
     <div>

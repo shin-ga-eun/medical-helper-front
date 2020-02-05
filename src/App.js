@@ -22,6 +22,7 @@ function App() {
       <Route path="/appointmentcheck" component={AppointmentCheckPage} />
       <Route path="/checkdetail" component={CheckdetailPage} />
       <Route path="/myprofile" component={MyProfilePage} />
+      
     </div>
   );
 }

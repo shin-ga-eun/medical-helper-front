@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 
 const Search = () => {
 
   // api로 병원 리스트 가져오기
+  // useEffect( ()=>{
+  //   try{
+  //     const response
+  //   }
+  // },[])
 
 
 
