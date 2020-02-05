@@ -17,6 +17,8 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 
 const Appointment = () => {
   const [symptom, setSympmtom] = useState("");
+  const [xPos, setXPos] = useState("");
+  const [yPos, setYPos] = useState("");
 
 
   const handleSypmtom = e => {
@@ -24,36 +26,40 @@ const Appointment = () => {
   };
 
   // componentDidMount
-  useEffect( ()=>{
-    // const {xPos,yPos} = match.params;
-
-     // 현재위치를 구하는 값
+  useEffect(() => {
+    // 현재위치를 구하는 값
     // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
+    console.log("here is useEffect");
+
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
       navigator.geolocation.getCurrentPosition(function(position) {
-        const lat = position.coords.latitude, // 위도
-          lon = position.coords.longitude; // 경도
+        setXPos(position.coords.latitude); // 위도
+        setYPos(position.coords.longitude); // 경도
 
-        console.log(lat, lon);
+        console.log("Xx",xPos+", "+yPos);
+        
       });
     }
-
-  //   const get = async () => {
-  //     try {
-  //         const response = await Axios.get(`/artSharing/art/${id}/1`);
-  //         const { status, data } = response;
-  //         console.log(data);
-  //         if (status == 200) {
-  //             setArtItem(data.content);
-  //         }
-  //     } catch (e) {
-
-  //     }
-  // };
-  // get();
     
-  },[])
+    const get = async () => {
+      try {
+        console.log("here is get");
+
+        const response = Axios.get(
+          // `/medicalHelper/hospital/gps/${xPos}/${yPos}`
+        );
+
+        // console.log("Yy",xPos+yPos);
+
+        console.log((await response).data);
+      } catch (e) {
+        console.log(e);
+      }
+      
+    };
+    get();
+  }, []);
 
   return (
     <div>
