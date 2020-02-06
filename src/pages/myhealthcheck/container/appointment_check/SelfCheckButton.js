@@ -29,7 +29,9 @@ class SelfCheckButton extends Component {
         solution: "",
         title: "",
 
-        currentTime: Date(),
+        serverDate: this.props.serverDate,
+        serverTime: this.props.serverTime,
+        toggle: false, // false-> 예약완료, true->처방입력
         open: false, //처방입력 모달창 오픈 유무
     }
 
@@ -45,6 +47,7 @@ class SelfCheckButton extends Component {
             open: false,
         })
     }
+
     //모달창 완료 버튼 클릭 시 서버로 데이터 전송
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -52,19 +55,53 @@ class SelfCheckButton extends Component {
         console.log("변경 된 date 값 >>", this.state);
     }
 
-    compareToTime = () => {
-        const currentTime = this.state.currentTime;
+    //시간비교
+    componentDidMount = () => {
+        try {
+            const {serverDate, serverTime,toggle} = this.state;
+            const preDate = new Date();
+            const year = preDate.getFullYear();
+            const month = preDate.getMonth()+1;
+            const date = preDate.getDate();
 
-        console.log("현재시간 >>>",currentTime.getTime());
+            const currentDate = addZero(year)+"-"+addZero(month)+"-"+addZero(date); //현재날짜 string 2020-02-06
+            const currentTime = addZero(preDate.getHours())+":"+addZero(preDate.getMinutes()); //현재시간 string 18:03
+            
+            console.log("현재날짜 >>>",currentDate+" "+currentTime);
+            console.log("서버날짜 >>>",serverDate+" "+serverTime);
+
+            if(currentDate+" "+currentTime > serverDate+" "+serverTime){
+                if(!toggle)
+                    this.setState({
+                        toggle:true,
+                    });
+                console.log("지났으니까 처방입력으로 전환")
+            }
+            
+            //(ex) 시간표시 6:5 -> 06:05로 변환
+            function addZero(time){
+                if(time<10)
+                    time="0"+time;
+                return time;
+            }
+            
+            
+        } catch (e) {
+
+        }
+
 
     }
 
+    
+    // form valueChange
     handleValueChange = (e) => {
         const nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
   
+    // checkbox toggle
     handleToggle = name => event => {
         this.setState({ 
             // this.state.breakfast,
@@ -76,21 +113,21 @@ class SelfCheckButton extends Component {
         const classes = useStyles.bind();
         const {status} = this.props;
         
-        const {doctorName, breakfast, lunch, dinner, deadline, solution, title} = this.state;
+        const {doctorName, breakfast, lunch, dinner, deadline, solution, title, toggle} = this.state;
         
         return (
             <div>
-                {this.state.currentTime}
+                {console.log(toggle)}
 
                 {/* 예약시간전 상태(예약)*/}
-                {status==="예약완료"&&
+                {status==="예약완료"&&!toggle&&
                     <Button variant="contained" color="secondary"> 
-                        진료예약
+                        예약완료
                     </Button>
                 }
             
                 {/* 예약시간후 상태(예약)*/}
-                {status==="예약완료"&&
+                {status==="예약완료"&&toggle&&
                     <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     처방입력
                 </Button>

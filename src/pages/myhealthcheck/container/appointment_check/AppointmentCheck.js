@@ -11,15 +11,23 @@ class AppointmentCheck extends Component {
       {
         id: 0,
         hospital:"미정",
-        reserveDate: "yyyy-MM-dd",
-        reserveTime: "10:00",
+        reserveDate: "2020-02-06",
+        reserveTime: "21:00",
         status: "예약완료",
         symptom: "두통"
       },
       {
         id: 1,
         hospital:"미정",
-        reserveDate: "yyyy-MM-dd",
+        reserveDate: "2020-02-06",
+        reserveTime: "18:30",
+        status: "예약완료",
+        symptom: "복통"
+      },
+      {
+        id: 2,
+        hospital:"미정",
+        reserveDate: "2020-02-05",
         reserveTime: "11:00",
         status: "처방완료",
         symptom: "복통"
@@ -32,7 +40,6 @@ class AppointmentCheck extends Component {
     
     return (
       <div>
-         {/* <Moment fromNow ago>1976-04-19T12:59-0500</Moment> */}
         <AppointmentCheckList items={items}/>
       </div>
     );

@@ -42,7 +42,7 @@ class AppointmentCheckList extends Component {
                         <TableCell align="center">{row.hospital}</TableCell>
                         <TableCell align="center">{row.reserveDate}</TableCell>
                         <TableCell align="center">{row.reserveTime}</TableCell>
-                        <TableCell align="center"><SelfCheckButton status={row.status} serverTime={row.reserveDate}/></TableCell>
+                        <TableCell align="center"><SelfCheckButton status={row.status} serverDate={row.reserveDate} serverTime={row.reserveTime}/></TableCell>
                         </TableRow>
                     ))}
 
