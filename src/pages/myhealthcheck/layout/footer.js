@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import {Container,Grid,Box} from "@material-ui/core";
+import { Container, Grid, Box } from "@material-ui/core";
 
-import useStyles from "../sytle/useStyles";
-
+import useStyles from "../style/useStyles";
 
 class footer extends Component {
     render() {
@@ -34,4 +33,3 @@ class footer extends Component {
 }
 
 export default footer;
-

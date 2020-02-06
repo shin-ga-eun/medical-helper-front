@@ -11,8 +11,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import useStyles from '../../sytle/useStyles';
-
+import useStyles from "../../style/useStyles";
 //버튼 어떻게 구현되는건지 물어보기
 //처방입력시 서버에 전송되는 데이터 물어보기
 /**

@@ -16,8 +16,7 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-
-import useStyles from "../sytle/useStyles"
+import useStyles from "../style/useStyles";
 
 import React, { useState } from 'react';
 
@@ -26,7 +25,6 @@ const Header = () => {
   const classes = useStyles.bind();
 
   const [open, setOpen] = useState(true);
-  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -43,7 +41,6 @@ const Header = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          
           <Typography
             component="h1"
             variant="h6"
@@ -53,16 +50,9 @@ const Header = () => {
           >
             내 건강관리
           </Typography>
-          
         </Toolbar>
       </AppBar>
-
-
     </div>
   );
-}
+};
 export default Header;
-
-
-
-

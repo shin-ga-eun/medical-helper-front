@@ -19,6 +19,8 @@ class MapForm extends Component {
         var lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
 
+        console.log(lat, lon);
+
         var locPostion = new kakao.maps.LatLng(lat, lon), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
           message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다.
 

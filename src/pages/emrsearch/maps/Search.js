@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 
 const Search = () => {
+
+  // api로 병원 리스트 가져오기
+  // useEffect( ()=>{
+  //   try{
+  //     const response
+  //   }
+  // },[])
+
+
+
+
+
+
   // 검색할 문자열 저장
   const [text, setText] = useState("");
 
@@ -19,6 +32,8 @@ const Search = () => {
     // 데이터에서 value값이 포함된 병원 출력하기
   };
 
+  
+
   return (
     <div>
       <input
@@ -28,6 +43,7 @@ const Search = () => {
         onChange={onChange}
         name="text"
       />
+
       <Button variant="outlined" color="secondary" onClick={onClick}>
         검색
       </Button>
