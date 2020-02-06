@@ -15,50 +15,39 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 
+let xPos = 0;
+let yPos = 0;
+
 const Appointment = () => {
   const [symptom, setSympmtom] = useState("");
-  const [xPos, setXPos] = useState("");
-  const [yPos, setYPos] = useState("");
-
 
   const handleSypmtom = e => {
     setSympmtom(e.target.value);
   };
-
+  
   // componentDidMount
   useEffect(() => {
-    // 현재위치를 구하는 값
-    // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
-    console.log("here is useEffect");
-
+    
+    // // 현재위치를 구하는 값
+    // // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
       navigator.geolocation.getCurrentPosition(function(position) {
-        setXPos(position.coords.latitude); // 위도
-        setYPos(position.coords.longitude); // 경도
-
-        console.log("Xx",xPos+", "+yPos);
-        
-      });
+              xPos = position.coords.latitude; // 위도
+              yPos = position.coords.longitude; // 경도
+              
+              const get = async () => {
+                try {
+                    const response = await Axios.get(`/medicalHelper/hospital/gps/around/${yPos}/${xPos}?pageNo=${1}`);
+                    console.log(response.data)
+                  } catch (e) {
+                      console.log(e);
+                }
+            };
+            get();
+              console.log(xPos, yPos);
+            });
     }
-    
-    const get = async () => {
-      try {
-        console.log("here is get");
-
-        const response = Axios.get(
-          // `/medicalHelper/hospital/gps/${xPos}/${yPos}`
-        );
-
-        // console.log("Yy",xPos+yPos);
-
-        console.log((await response).data);
-      } catch (e) {
-        console.log(e);
-      }
-      
-    };
-    get();
   }, []);
 
   return (
