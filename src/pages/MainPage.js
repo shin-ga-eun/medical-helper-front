@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import { Route, Link } from "react-router-dom";
-import EmrSearchPage from "./EmrSearchPage";
+import EmrSearchPage from "./emrsearch/EmrSearchPage";
 
 const MainPage = () => {
   return (
-    <>
+    <div>
       <div>
         <Link to="/emrsearch">
           <Button
@@ -20,7 +20,7 @@ const MainPage = () => {
       </div>
 
       <div>
-        <Link to="/myhealthcheck">
+       <Link to="/myhealthcheck">
           <Button
             variant="contained"
             color="primary"
@@ -31,8 +31,8 @@ const MainPage = () => {
           </Button>
         </Link>
       </div>
-    </>
-  );
+    </div>
+   );
 };
 
 export default MainPage;

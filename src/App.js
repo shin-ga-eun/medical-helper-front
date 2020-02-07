@@ -1,27 +1,30 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+
 import MainPage from "./pages/MainPage";
-import EmrSearchPage from "./pages/EmrSearchPage";
-import MyHealthCheckPage from "./pages/MyHealthCheckPage";
-import AppointmentPage from "./pages/AppointmentPage";
-import AppointmentCheckPage from "./pages/AppointmentCheckPage";
-import CheckdetailPage from "./pages/CheckdetailPage";
-import MyProfilePage from "./pages/MyProfilePage";
+import MyHealthCheckMain from "./pages/myhealthcheck/MyHealthCheckMain";
+import EmrSearchPage from "./pages/emrsearch/EmrSearchPage";
+
+import Appointment from "./pages/myhealthcheck/container/Appointment";
+import Checkdetail from "./pages/myhealthcheck/container/Checkdetail";
+import AppointmentCheck from "./pages/myhealthcheck/container/appointment_check/AppointmentCheck";
+
+
 
 function App() {
   return (
     <div className="App">
-      <Route path="/register" component={RegisterPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/main" component={MainPage} />
-      <Route path="/emrsearch" component={EmrSearchPage} />
-      <Route path="/myhealthcheck" component={AppointmentPage} />
-      <Route path="/appointment" component={AppointmentPage} />
-      <Route path="/appointmentcheck" component={AppointmentCheckPage} />
-      <Route path="/checkdetail" component={CheckdetailPage} />
-      <Route path="/myprofile" component={MyProfilePage} />
+      {/* <Route path="/register" component={RegisterPage} />
+      <Route path="/login" component={LoginPage} /> */}
+      
+      
+      <Route exact path="/" component={MainPage} /> {/*메인페이지*/}
+      <Route exact path="/emrsearch" component={EmrSearchPage} /> {/*응급실조회페이지 */}
+      <Route exact path="/myhealthcheck" component={MyHealthCheckMain}/> {/* 내건강관리페이지  */}
+      
+
+
+
       
     </div>
   );

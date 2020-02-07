@@ -78,7 +78,13 @@ const useStyles = makeStyles(theme => ({
     },
     fixedHeight: {
       height: 240
-    }
+    },
+    table: {
+      minWidth: 650,
+    },
+    formControl: {
+      margin: theme.spacing(3),
+    },
   }));
 
   export default useStyles;
