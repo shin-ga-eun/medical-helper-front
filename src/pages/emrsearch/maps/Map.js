@@ -1,12 +1,13 @@
 /* global kakao */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "./Search";
 
-let xPos = 0; // 위도
-let yPos = 0; // 경도
-
 const Map = () => {
+  const [xPos,setXpos] = useState(0);
+  const [yPos,setYpos] = useState(0);
+  
   useEffect(() => {
+    console.log(1)
     let mapContainer = document.getElementById("map"),
       mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
@@ -19,10 +20,10 @@ const Map = () => {
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
       navigator.geolocation.getCurrentPosition(function(position) {
-        xPos = position.coords.latitude; // 위도
-        yPos = position.coords.longitude; // 경도
+        setXpos(position.coords.latitude);  // 위도
+        setYpos(position.coords.longitude); // 경도
 
-        console.log(xPos, yPos);
+        
 
         var locPostion = new kakao.maps.LatLng(xPos, yPos), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
           message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다.
@@ -56,7 +57,7 @@ const Map = () => {
       // 지도 중심좌표를 접속위치로 변경합니다.
       map.setCenter(locPostion);
     }
-  }, []);
+  });
   return (
     <>
       <div
@@ -64,6 +65,7 @@ const Map = () => {
         className="Map"
         style={{ width: "100%", height: "550px" }}
       ></div>
+      {console.log(2)}
       <Search xPos={xPos} yPos={yPos} />
     </>
   );
