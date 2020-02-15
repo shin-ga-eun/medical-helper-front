@@ -80,7 +80,7 @@ const Search = ({ xPos, yPos }) => {
   //   }
   // ];
 
-  const [form, setForm] = useState(null);
+  const [data, setData] = useState([]);
 
   const onClick = async e => {
     // 새로고침 방지
@@ -94,6 +94,8 @@ const Search = ({ xPos, yPos }) => {
         }?pageNo=${1}`
       );
       console.log(response.data);
+      setData(response.data);
+      console.log(data)
       
     } catch (e) {
       console.log(e);
@@ -234,7 +236,7 @@ const Search = ({ xPos, yPos }) => {
       </button>
       <hr/>
 
-      {/* <HospitalList datas={datas} /> */}
+      <HospitalList data={data} />
     </div>
   );
 };

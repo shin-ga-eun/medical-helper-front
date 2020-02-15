@@ -1,12 +1,12 @@
 import React from 'react';
 import HosipitalItem from './HospitalItem';
 
-const HospitalList = ({datas}) => {
+const HospitalList = ({data}) => {
 
     return (
         <div>
-            {datas.map(data=>(
-                <HosipitalItem key={data.id} data={data} />
+            {data.map(data=>(
+                <HosipitalItem key={data.id} data={data}  />
             ))}
            
         </div>
