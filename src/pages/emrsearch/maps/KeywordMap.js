@@ -1,32 +1,20 @@
 /* global kakao */
 
 import React, { useEffect, useState } from "react";
-import Search from "./Search";
 
-const Map = () => {
+const KeywordMap = ({hx,hy}) => {
   const [xPos, setXpos] = useState(0);
   const [yPos, setYpos] = useState(0);
 
   useEffect(() => {
     // 마커를 담을 배열입니다
-    let mapContainer = document.getElementById("map"),
+    let mapContainer = document.getElementById("keymap"),
       mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 3
       };
 
     let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다.
-
-    // HTML5의 geolocaiton으로 사용할 수 있는지 확인합니다.
-    if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다.
-      navigator.geolocation.getCurrentPosition(function(position) {
-        setXpos(position.coords.latitude); // 위도
-        setYpos(position.coords.longitude); // 경도  
-      });
-    } else {
-    
-    }
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다.
     function displayMarker(locPostion, message) {
@@ -52,25 +40,29 @@ const Map = () => {
       map.setCenter(locPostion);
     }
 
+    console.log(hx+"    "+hy)
+    if(hx !== null){
+      setXpos(hx);
+      setYpos(hy);
+    }
 
     // 좌표에 따른 위치 지도에 표시하기
-    var locPostion = new kakao.maps.LatLng(xPos, yPos), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
-          message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다.
+    var locPostion = new kakao.maps.LatLng(xPos,yPos), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
+          message = '<div style="padding:5px;">찾고계신 병원이 맞나요?!</div>'; // 인포윈도우에 표시될 내용입니다.
     // 마커와 인포윈도우를 표시합니다.
     displayMarker(locPostion, message);
 
   });
+
   return (
     <>
       <div
-        id="map"
-        className="Map"
+        id="keymap"
+        className="Keymap"
         style={{ width: "100%", height: "550px" }}
       ></div>
-
-      <Search xPos={xPos} yPos={yPos}/>
     </>
   );
 };
 
-export default Map;
+export default KeywordMap;

@@ -236,6 +236,7 @@ const Search = ({ xPos, yPos }) => {
       </button>
       <hr/>
 
+      
       <HospitalList data={data} />
     </div>
   );
