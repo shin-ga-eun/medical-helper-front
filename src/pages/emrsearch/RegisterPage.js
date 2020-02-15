@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterForm from "./register/RegisterForm";
+import RegisterForm from "../../login/register/RegisterForm";
 
 const RegisterPage = () => {
   return (
