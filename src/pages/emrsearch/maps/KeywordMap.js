@@ -3,18 +3,22 @@
 import React, { useEffect, useState } from "react";
 
 const KeywordMap = ({hx,hy}) => {
-  const [xPos, setXpos] = useState(0);
-  const [yPos, setYpos] = useState(0);
-
+  const [xPos,setXpos] = useState(0);
+  const [yPos,setYpos] = useState(0);
+  
   useEffect(() => {
     // 마커를 담을 배열입니다
+    setXpos(hx);
+    setYpos(hy);
+    
     let mapContainer = document.getElementById("keymap"),
       mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(37.56682,126.97865), 
         level: 3
       };
 
     let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다.
+
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다.
     function displayMarker(locPostion, message) {
@@ -40,17 +44,19 @@ const KeywordMap = ({hx,hy}) => {
       map.setCenter(locPostion);
     }
 
-    console.log(hx+"    "+hy)
+    
     if(hx !== null){
       setXpos(hx);
       setYpos(hy);
     }
 
     // 좌표에 따른 위치 지도에 표시하기
-    var locPostion = new kakao.maps.LatLng(xPos,yPos), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
-          message = '<div style="padding:5px;">찾고계신 병원이 맞나요?!</div>'; // 인포윈도우에 표시될 내용입니다.
+    var locPostion = new kakao.maps.LatLng(yPos,xPos), //마커가 표시될 위치를 geolocation 좌표로 생성합니다.
+          message = '<div style="padding:5px;">찾고계신 병원입니다.</div>'; // 인포윈도우에 표시될 내용입니다.
     // 마커와 인포윈도우를 표시합니다.
     displayMarker(locPostion, message);
+    
+    
 
   });
 
@@ -58,7 +64,7 @@ const KeywordMap = ({hx,hy}) => {
     <>
       <div
         id="keymap"
-        className="Keymap"
+        className="keymap"
         style={{ width: "100%", height: "550px" }}
       ></div>
     </>

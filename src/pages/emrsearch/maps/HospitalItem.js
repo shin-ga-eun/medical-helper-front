@@ -12,6 +12,7 @@ import Map from "./Map";
 
 
 const HospitalItem = ({data}) => {
+
     const [open, setOpen] = useState(false);
   
     const handlePos=(e)=>{
@@ -32,16 +33,20 @@ const HospitalItem = ({data}) => {
         <>
 
         <div>
-            병원명: {data.name} <br/>위치 : {data.address} <button onClick={()=>handlePos()}>지도</button> 
+            
+            병원명: {data.name} <br/>위치 : {data.address} {data.xpos} {data.ypos}  
+            {data.ypos}
+            <button onClick={()=>handlePos()}>지도</button> 
             <hr/>
         </div>
         {/* 모달창 start */}
-        <Dialog
-                  open={open}
+            <Dialog
+                   open={open}
                   onClose={handleClickClose}
                   fullWidth
                   maxWidth="sm"
                 >
+        
                   <DialogTitle>병원위치</DialogTitle>
                       <DialogContent>
                         
