@@ -12,8 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import useStyles from "../../style/useStyles";
-//버튼 어떻게 구현되는건지 물어보기
-//처방입력시 서버에 전송되는 데이터 물어보기
+import Axios, {post} from "axios";
+
 /**
  * 버튼 상태
  * 예약완료 (state 예약)
@@ -28,11 +28,15 @@ class SelfCheckButton extends Component {
         deadline: "", //달력
         solution: "",
         title: "",
+        reservationId:this.props.reservationId,
+
+        file:null,
 
         serverDate: this.props.serverDate,
         serverTime: this.props.serverTime,
         toggle: false, // false-> 예약완료, true->처방입력
         open: false, //처방입력 모달창 오픈 유무
+        resultOpen: false, //처방내역 모달창 오픈 유무
     }
 
     //모달창 열기
@@ -41,6 +45,14 @@ class SelfCheckButton extends Component {
             open: true,
         })
     }
+
+    handleClickResultOpen = (e) => {
+        this.setState({
+            resultOpen: true,
+        })
+    }
+
+
     //모달창 닫기
     handleClickClose = (e) => {
         this.setState({
@@ -48,11 +60,42 @@ class SelfCheckButton extends Component {
         })
     }
 
+    addTreatment() {
+        const url = "/medicalHelper/treatment";
+  
+        const formData = new FormData();
+        const {doctorName,breakfast,lunch,dinner,deadline,solution,title, reservationId, file} = this.state;
+        const token = localStorage.getItem("token");
+  
+        formData.append("imageFile", file);
+  
+        const config = {
+            headers: {
+                "Content-type": "multipart/form-data",
+                "token": token,
+            },
+        };
+  
+        const json = `{ "title": "${title}", "solution": "${solution}", "doctorName": "${doctorName}", "reservationId": ${reservationId}, "breakfast": ${breakfast}, "lunch": ${lunch}, "dinner": ${dinner}, "deadline": "${deadline}"}`;
+        console.log(json);
+  
+        formData.append("json", json);
+        return post(url, formData, config);
+    }
+
     //모달창 완료 버튼 클릭 시 서버로 데이터 전송
     handleFormSubmit = (e) => {
         e.preventDefault();
         console.log("Here is handleFormSubmit in SelfCheckButton");
-        console.log("변경 된 date 값 >>", this.state);
+
+        this.addTreatment()
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }
 
     //시간비교
@@ -104,7 +147,6 @@ class SelfCheckButton extends Component {
     // checkbox toggle
     handleToggle = name => event => {
         this.setState({ 
-            // this.state.breakfast,
             [name]: event.target.checked,
         });
     }
@@ -129,29 +171,29 @@ class SelfCheckButton extends Component {
                 {/* 예약시간후 상태(예약)*/}
                 {status==="예약완료"&&toggle&&
                     <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                    처방입력
-                </Button>
+                        처방입력
+                    </Button>
                 }
 
                 {/* 처방입력후 상태(처방)*/}
                 {status==="처방완료"&&
-                <Button variant="outlined" color="primary">
-                    처방내역
-                </Button>
+                    <Button variant="outlined" color="primary" onClick={this.handleClickResultOpen}>
+                        처방내역
+                    </Button>
                 }      
 
-                {/* 모달창 start */}
+                {/* 처방입력 모달창 start */}
                 <Dialog
                   open={this.state.open}
                   onClose={this.handleClickClose}
                   fullWidth
                   maxWidth="sm"
                 >
-                  <DialogTitle>처방입력</DialogTitle>
-                  <form onSubmit={this.handleFormSubmit}>
-                      <DialogContent>
+                    <DialogTitle>처방입력</DialogTitle>
+                    <form onSubmit={this.handleFormSubmit}>
+                        <DialogContent>
 
-                      <TextField
+                        <TextField
                             id="standard-basic"
                             label="제목"
                             name="title"
@@ -210,16 +252,16 @@ class SelfCheckButton extends Component {
                             onChange={this.handleValueChange}
                             />
                           <br />
-                      </DialogContent>
+                        </DialogContent>
 
-                      <DialogActions>
-                          <Button variant="outlined" color="primary" onClick={this.handleClickClose}>취소</Button>
-                          <Button type="submit" variant="contained" color="secondary" onClick={this.handleClickClose}>완료</Button>
-                      </DialogActions>
+                        <DialogActions>
+                            <Button variant="outlined" color="primary" onClick={this.handleClickClose}>취소</Button>
+                            <Button type="submit" variant="contained" color="secondary" onClick={this.handleClickClose}>완료</Button>
+                        </DialogActions>
 
-                  </form>
-              </Dialog>
-            {/* 모달창 end */}
+                    </form>
+                </Dialog>
+                {/* 모달창 end */}
 
 
             </div>

@@ -7,22 +7,8 @@ import { Route } from "react-router-dom";
 
 //내건강관리페이지의 메인홈페이지
 class MyHealthCheckMain extends Component {
-    // state={
-    //     isLogin: false,
-    // }
-
-    // handleLogin = (data) =>{
-        
-    //     this.setState({
-    //         isLogin: data,
-    //     });
-
-
-    // }
 
     render() {
-        // const {isLogin}=this.state;
-
         return (
             <div>
                     <Grid

@@ -108,15 +108,18 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={hospitalName}
                                     name="hospitalName"
+                                    style={{width: 200}}
+                                    unselectable
                                 />
                                 <br/><br/>
                                 예약날짜 :{"   "}
                                 <TextField
-                                    label="예약날짜"
                                     type="date"
                                     value={reserveDate}
                                     name="reserveDate"
+                                    style={{width: 200}}
                                     onChange={handleValueChange}
+                                    autoFocus
                                 />
                                 <br/><br/>
                                 예약시간 :{"   "}
@@ -125,6 +128,7 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={reserveTime}
                                     name="reserveTime"
+                                    style={{width: 200}}
                                     onChange={handleValueChange}
                                 />
                                 
@@ -135,6 +139,7 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={symptom}
                                     name="symptom"
+                                    style={{width: 200}}
                                     onChange={handleValueChange}
                                 />
                                 <br />
