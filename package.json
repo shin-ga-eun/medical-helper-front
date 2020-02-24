@@ -1,6 +1,6 @@
 {
   "name": "medical-helper-v2",
-  "proxy": "http://54.180.155.67:8080",
+  "proxy": "http://54.180.90.201:8080",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.1",
+    "ciqu-react-calendar": "^1.0.2",
+    "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-moment": "^0.9.7",

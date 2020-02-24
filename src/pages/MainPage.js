@@ -20,7 +20,7 @@ const MainPage = () => {
       </div>
 
       <div>
-       <Link to="/myhealthcheck">
+        <Link to="/login">
           <Button
             variant="contained"
             color="primary"

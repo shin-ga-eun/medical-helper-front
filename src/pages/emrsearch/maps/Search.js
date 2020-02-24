@@ -4,81 +4,6 @@ import HospitalList from "./HospitalList";
 
 
 const Search = ({ xPos, yPos }) => {
-  // // 임시 데이터
-  // const datas = [
-  //   {
-  //     id: 33946,
-  //     name: "한빛내과의원",
-  //     location: null,
-  //     tel: "051-505-9922",
-  //     address: "부산광역시 동래구 아시아드대로 234 206호 (온천동, 반도보라상가)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47837",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   }
-  // ];
 
   const [data, setData] = useState([]);
 
@@ -103,18 +28,7 @@ const Search = ({ xPos, yPos }) => {
   };
   return (
     <div>
-      {/* 검색창을 통해 병원리스트 출력
-       <input
-        type="text"
-        placeholder="검색할 병원을 입력하세요."
-        value={text}
-        onChange={onChange}
-        name="text"
-      />
-      <button variant="outlined" color="secondary" onClick={onClick}>
-        검색
-      </button> 
-      */}
+      
       <br />
       <button variant="outlined" value="내과" color="primary" onClick={onClick}>
         내과

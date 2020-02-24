@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 
-import Appointment from "../container/Appointment"
+import Appointment from "../container/appointment/Appointment"
 import Checkdetail from "../container/Checkdetail";
 import AppointmentCheck from "../container/appointment_check/AppointmentCheck";
 
@@ -29,6 +29,7 @@ class body extends Component {
         return (
             <div>
                  <Grid
+                    sm={12}
                      container
                      direction="row"
                      justify="flex-start"

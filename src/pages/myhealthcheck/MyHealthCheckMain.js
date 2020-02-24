@@ -3,26 +3,38 @@ import {Header,Body,Footer} from "./layout";
 import Grid from '@material-ui/core/Grid';
 import { Route } from "react-router-dom";
 
-import Appointment from "./container/Appointment"
-import Checkdetail from "./container/Checkdetail";
-import AppointmentCheck from "./container/appointment_check/AppointmentCheck";
 
 
 //내건강관리페이지의 메인홈페이지
 class MyHealthCheckMain extends Component {
+    // state={
+    //     isLogin: false,
+    // }
+
+    // handleLogin = (data) =>{
+        
+    //     this.setState({
+    //         isLogin: data,
+    //     });
+
+
+    // }
+
     render() {
+        // const {isLogin}=this.state;
+
         return (
             <div>
                     <Grid
                         container
-                        item sm = {9} 
+                        item sm = {12} 
                         direction="column"
                         justify="space-between"
                         alignItems="stretch"
                         spacing={10}
                     >
                         <Grid item sm>
-                            <Header />
+                            <Header/>
                         </Grid>     
 
 
