@@ -89,7 +89,7 @@ class HospitalForm extends Component {
         return (
             <div>
                 
-                        <Button color="primary" style={{width:20,}} onClick={handleOpen}>선택</Button>
+                        <Button variant="outlined" color="primary" style={{width:20,}} onClick={handleOpen}>예약</Button>
                     
                         <Dialog
                             open={open}
@@ -108,7 +108,7 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={hospitalName}
                                     name="hospitalName"
-                                    style={{width: 200}}
+                                    style={{width: 250}}
                                     unselectable
                                 />
                                 <br/><br/>
@@ -117,7 +117,7 @@ class HospitalForm extends Component {
                                     type="date"
                                     value={reserveDate}
                                     name="reserveDate"
-                                    style={{width: 200}}
+                                    style={{width: 250}}
                                     onChange={handleValueChange}
                                     autoFocus
                                 />
@@ -128,7 +128,7 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={reserveTime}
                                     name="reserveTime"
-                                    style={{width: 200}}
+                                    style={{width: 250}}
                                     onChange={handleValueChange}
                                 />
                                 
@@ -139,7 +139,7 @@ class HospitalForm extends Component {
                                     type="text"
                                     value={symptom}
                                     name="symptom"
-                                    style={{width: 200}}
+                                    style={{width: 250}}
                                     onChange={handleValueChange}
                                 />
                                 <br />

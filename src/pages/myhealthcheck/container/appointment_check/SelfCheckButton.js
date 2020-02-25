@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from "@material-ui/core";
+import { Button, ListItemSecondaryAction, Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -10,9 +10,11 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+
 import Checkbox from '@material-ui/core/Checkbox';
 import useStyles from "../../style/useStyles";
-import Axios, {post} from "axios";
+import Axios, {post, put} from "axios";
 
 /**
  * 버튼 상태
@@ -37,19 +39,29 @@ class SelfCheckButton extends Component {
         toggle: false, // false-> 예약완료, true->처방입력
         open: false, //처방입력 모달창 오픈 유무
         resultOpen: false, //처방내역 모달창 오픈 유무
+
+        treatmentItems: [],
+
+        tb:false, //서버data 중 data.drug에 대한 참조가 되지 않아서 데이터를 두번저장함...
+        tl:false,
+        td:false,
+        tdl:"",
     }
 
-    //모달창 열기
+    //처방입력모달창 열기
     handleClickOpen = (e) => {
         this.setState({
             open: true,
         })
     }
 
+    //처방내역모달창 열기
     handleClickResultOpen = (e) => {
+        this.getTreatment(this.state.reservationId);
         this.setState({
             resultOpen: true,
         })
+        console.log("처방내역모달창 열게~ ")
     }
 
 
@@ -57,6 +69,7 @@ class SelfCheckButton extends Component {
     handleClickClose = (e) => {
         this.setState({
             open: false,
+            resultOpen: false,
         })
     }
 
@@ -83,7 +96,7 @@ class SelfCheckButton extends Component {
         return post(url, formData, config);
     }
 
-    //모달창 완료 버튼 클릭 시 서버로 데이터 전송
+    //처방입력모달창 완료 버튼 클릭 시 서버로 데이터 전송
     handleFormSubmit = (e) => {
         e.preventDefault();
         console.log("Here is handleFormSubmit in SelfCheckButton");
@@ -97,6 +110,87 @@ class SelfCheckButton extends Component {
             });
 
     }
+
+    getTreatment = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            const response = await Axios.get(
+              `/medicalHelper/treatment/${id}`,
+              {
+                headers: {
+                  "token": token,
+                }
+            });
+    
+            const { status, data } = response;
+            if (status === 200) {
+                console.log("데이터가져올게~ ");
+                console.log(data);
+
+                const { state } = this;
+                this.setState({
+                    ...state,
+                    treatmentItems: data,
+                    tb: data.drug.breakfast,
+                    tl: data.drug.lunch,
+                    td: data.drug.dinner,
+                    tdl: data.drug.deadline,
+
+                });
+
+                console.log("treatment data를 보자!")
+                console.log(this.state.treatmentItems)
+            }
+        } catch (e) {
+    
+        }
+
+
+    }
+
+    modifyTreatment(id) {
+        
+        const url = `/medicalHelper/treatment`;
+  
+        const formData = new FormData();
+        const {doctorName,solution,title, file} = this.state;
+        const token = localStorage.getItem("token");
+  
+        formData.append("imageFile", file);
+  
+        const config = {
+            headers: {
+                "Content-type": "multipart/form-data",
+                "token": token,
+            },
+        };
+  
+        const json = `{ "id": ${id}, "title": "${title}", "solution": "${solution}", "doctorName": "${doctorName}"}`;
+        console.log(json);
+  
+        formData.append("json", json);
+        return put(url, formData, config);
+    }
+
+
+    //처방내역모달창 완료 버튼 클릭 시 서버로 데이터 전송
+    handleModifySubmit = (e) => {
+        e.preventDefault();
+        console.log("Here is handleModifySubmit in SelfCheckButton");
+
+        const id = this.state.reservationId;
+
+        this.modifyTreatment(id)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }
+
 
     //시간비교
     componentDidMount = () => {
@@ -155,7 +249,7 @@ class SelfCheckButton extends Component {
         const classes = useStyles.bind();
         const {status} = this.props;
         
-        const {doctorName, breakfast, lunch, dinner, deadline, solution, title, toggle} = this.state;
+        const {doctorName, breakfast, lunch, dinner, deadline, solution, title, toggle, treatmentItems} = this.state;
         
         return (
             <div>
@@ -206,7 +300,10 @@ class SelfCheckButton extends Component {
                             <TextField
                             id="standard-basic"
                             label="처방내용"
-                            style={{ width: 600 }}
+                            style={{ width: 300 }}
+                            multiline
+                            rows="4"
+                            variant="filled"
                             name="solution"
                             value={solution}
                             onChange={this.handleValueChange}
@@ -263,6 +360,100 @@ class SelfCheckButton extends Component {
                 </Dialog>
                 {/* 모달창 end */}
 
+                {/* 처방내역 모달창 start */}
+                <Dialog
+                  open={this.state.resultOpen}
+                  onClose={this.handleClickClose}
+                  fullWidth
+                  maxWidth="sm"
+                >
+                    {console.log("혹시 모달창에 데이터 잘있니~?")}
+                    {console.log(treatmentItems)}
+                    <DialogTitle>처방내역</DialogTitle>
+                    <form onSubmit={this.handleModifySubmit}>
+                        <DialogContent>
+                        
+                        <Typography>Title</Typography>
+                        <TextField
+                            id="standard-basic"
+                            name="title"
+                            
+                            defaultValue={treatmentItems.title}
+                            style={{ width: 300 }}
+                            onChange={this.handleValueChange}
+                            
+                            />
+                            <br />
+                            <br />
+                            <Typography>Solution</Typography>
+
+                            <TextField
+                            id="standard-basic"
+                            style={{ width: 300 }}
+                            name="solution"
+                            defaultValue={treatmentItems.solution}
+                            onChange={this.handleValueChange}
+
+                            />
+                            <br />
+                            <br />
+                            <Typography>담당진료의</Typography>
+
+                            <TextField
+                            id="standard-basic"
+                            style={{ width: 100 }}
+                            name="doctorName"
+                            defaultValue={treatmentItems.doctorName}
+                            onChange={this.handleValueChange}
+
+                            />
+                            <br />
+                            <br />
+                            {/* 아침 점심 저녁 toggle */}
+                            <FormControl component="fieldset" className={classes.formControl}>
+                            <FormLabel component="legend">처방시간</FormLabel>
+                            {console.log(this.state.tb)}
+                            {console.log(this.state.tl)}
+                            {console.log(this.state.td)}
+
+                                <FormGroup>
+                                <FormControlLabel
+                                
+                                    control={<Checkbox checked={this.state.tb}  />}
+                                    label="breakfast"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={this.state.tl}  />}
+                                    label="lunch"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={this.state.td}/>}
+                                    label="dinner"
+                                />
+                                
+                                </FormGroup> 
+                            </FormControl>
+                            <br />
+                            <br />
+                            <Typography>~까지</Typography>
+
+                            <TextField
+                            id="datetime-local"
+                            type="text"
+                            value={this.state.tdl}
+                            unselectable
+                            />
+                          <br />
+                        </DialogContent>
+
+                        <DialogActions>
+                            <Button variant="outlined" color="primary" onClick={this.handleClickClose}>취소</Button>
+                            <Button type="submit" variant="contained" color="secondary" onClick={this.handleClickClose}>수정</Button>
+                        </DialogActions>
+
+                    </form>
+                </Dialog>
+                {/* 모달창 end */}
 
             </div>
         );
