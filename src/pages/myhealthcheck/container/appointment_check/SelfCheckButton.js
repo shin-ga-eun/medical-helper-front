@@ -61,7 +61,6 @@ class SelfCheckButton extends Component {
         this.setState({
             resultOpen: true,
         })
-        console.log("처방내역모달창 열게~ ")
     }
 
 
@@ -253,8 +252,6 @@ class SelfCheckButton extends Component {
         
         return (
             <div>
-                {console.log(toggle)}
-
                 {/* 예약시간전 상태(예약)*/}
                 {status==="예약완료"&&!toggle&&
                     <Button variant="contained" color="secondary"> 
