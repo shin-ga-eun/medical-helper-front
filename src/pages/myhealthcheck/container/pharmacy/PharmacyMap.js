@@ -1,8 +1,7 @@
 /* global kakao */
-import React, { useEffect, useState } from "react";
-import Search from "./Search";
+import React from 'react';
 
-const Map = () => {
+const PharmacyMap = () => {
   const [xPos, setXpos] = useState(0);
   const [yPos, setYpos] = useState(0);
 
@@ -65,9 +64,10 @@ const Map = () => {
         style={{ width: "100%", height: "550px" }}
       ></div>
 
-      <Search xPos={xPos} yPos={yPos} />
+      <PharmarcyList xPos={xPos} yPos={yPos} />
     </>
   );
 };
+};
 
-export default Map;
+export default PharmacyMap;
