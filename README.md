@@ -9,3 +9,6 @@
 ### 기술 스택 ###
 React.js
 JavaScript
+
+### 화면 ###
+<img width="1037" alt="스크린샷 2022-11-18 오후 12 27 36" src="https://user-images.githubusercontent.com/31677736/202610133-91c8ac04-82ba-451a-86be-bf8e1ad74c0f.png">
